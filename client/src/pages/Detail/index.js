@@ -1,24 +1,46 @@
-import { useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useQuery } from "@apollo/client";
-import { getEmployees } from "../../gql/employee/queries";
-import Card from "../../components/Card";
+import { getEmployee } from "../../gql/employee/queries";
 import "./index.scss";
 
 export default () => {
-  const { loading, data, error } = useQuery(getEmployees);
-
-  const sortedEmployees = useMemo(
-    () => [...(data?.employees || [])].sort((a, b) => b?.vote - a?.vote),
-    [data?.employees]
-  );
+  const { id } = useParams();
+  const {
+    loading,
+    data: {
+      employee: { name, surname, pic, role, vote, email, address } = {},
+    } = {},
+    error,
+  } = useQuery(getEmployee, { variables: { id } });
 
   if (loading) return <h1>Loading...</h1>;
-  if (error) return <h1>An error occured.</h1>;
+  if (error) {
+    toast.error("An error occured.");
+  }
   return (
-    <div className="homeContainer">
-      {sortedEmployees?.map((employee) => (
-        <Card key={employee.id} {...employee} />
-      ))}
+    <div className="detailContainer">
+      <img src={pic} alt={name + surname} />
+      <div className="body">
+        <p>
+          <b>name:</b> {name}
+        </p>
+        <p>
+          <b>surname:</b> {surname}
+        </p>
+        <p>
+          <b>role:</b> {role}
+        </p>
+        <p>
+          <b>votes:</b> {vote}
+        </p>
+        <p>
+          <b>email:</b> {email}
+        </p>
+        <p>
+          <b>address:</b> {address}
+        </p>
+      </div>
     </div>
   );
 };

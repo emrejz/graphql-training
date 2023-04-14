@@ -1,8 +1,14 @@
-.homeContainer {
+.detailContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   row-gap: 20px;
   column-gap: 10px;
   flex-wrap: wrap;
+  img {
+    width: 400px;
+  }
+  .body {
+    font-size: 2rem;
+  }
 }

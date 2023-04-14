@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
-import { voteEmployee } from "../../gql/employee/mutations";
+import { voteEmployee } from "../../../../gql/employee/mutations";
 import "./index.scss";
 
 export default ({ id, name, pic, surname, role, vote }) => {
@@ -28,7 +28,7 @@ export default ({ id, name, pic, surname, role, vote }) => {
           <b>{name + " " + surname}</b>
         </h4>
         <p>role: {role}</p>
-        <p>vole: {vote}</p>
+        <p>votes: {vote}</p>
         <button disabled={loading} type="button" onClick={handleClick}>
           vote
         </button>

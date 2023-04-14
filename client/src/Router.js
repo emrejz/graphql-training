@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 const Layout = lazy(() => import("./components/Layout"));
 const Home = lazy(() => import("./pages/Home"));
 const NoMatch = lazy(() => import("./pages/NotMatch"));
+const Detail = lazy(() => import("./pages/Detail"));
 
 export const Router = () => {
   return (
@@ -12,6 +13,7 @@ export const Router = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="/employee/:id" element={<Detail />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>

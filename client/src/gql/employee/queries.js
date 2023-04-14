@@ -12,3 +12,18 @@ export const getEmployees = gql`
     }
   }
 `;
+
+export const getEmployee = gql`
+  query Employee($id: ID) {
+    employee(id: $id) {
+      id
+      name
+      surname
+      pic
+      role
+      address
+      email
+      vote
+    }
+  }
+`;

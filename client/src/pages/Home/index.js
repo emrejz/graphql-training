@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { useQuery } from "@apollo/client";
 import { getEmployees } from "../../gql/employee/queries";
-import Card from "../../components/Card";
+import Card from "./components/Card";
 import "./index.scss";
 
 export default () => {
