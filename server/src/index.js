@@ -5,8 +5,10 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
+import mongooseConnection from "./helpers/mongo.js";
 
 dotenv.config();
+await mongooseConnection();
 
 const app = express();
 const httpServer = http.createServer(app);
