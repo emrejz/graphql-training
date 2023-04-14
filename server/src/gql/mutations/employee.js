@@ -9,16 +9,20 @@ export default {
       name: { type: new GraphQLNonNull(GraphQLString) },
       surname: { type: new GraphQLNonNull(GraphQLString) },
       pic: { type: new GraphQLNonNull(GraphQLString) },
+      email: { type: new GraphQLNonNull(GraphQLString) },
+      address: { type: GraphQLString },
       role: { type: GraphQLString },
     },
     resolve(parent, args) {
-      const { name, surname, pic, role } = args;
+      const { name, surname, pic, role, email, address } = args;
 
       const employee = new EmployeeModel({
         name,
         surname,
         pic,
         role,
+        email,
+        address,
       });
       return employee.save();
     },

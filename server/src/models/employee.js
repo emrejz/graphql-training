@@ -21,6 +21,19 @@ const employeeSchema = Schema({
     type: Number,
     default: 0,
   },
+  address: {
+    type: String,
+    trim: true,
+  },
+  role: {
+    type: String,
+    default: "developer",
+  },
+  email: {
+    type: String,
+    uniq: true,
+    required: true,
+  },
 });
 
 export default mongoose.model("employees", employeeSchema);

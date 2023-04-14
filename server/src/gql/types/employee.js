@@ -13,6 +13,9 @@ export default new GraphQLObjectType({
     name: { type: GraphQLString },
     surname: { type: GraphQLString },
     pic: { type: GraphQLString },
+    role: { type: GraphQLString },
+    address: { type: GraphQLString },
+    email: { type: GraphQLString },
     vote: { type: GraphQLInt },
   }),
 });
