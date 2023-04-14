@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString } from "graphql";
+import { GraphQLNonNull, GraphQLString, GraphQLID } from "graphql";
 import EmployeeType from "../types/employee.js";
 import EmployeeModel from "../../models/employee.js";
 
@@ -13,7 +13,7 @@ export default {
       address: { type: GraphQLString },
       role: { type: GraphQLString },
     },
-    resolve(parent, args) {
+    resolve: async (parent, args) => {
       const { name, surname, pic, role, email, address } = args;
 
       const employee = new EmployeeModel({
@@ -24,7 +24,20 @@ export default {
         email,
         address,
       });
-      return employee.save();
+      return await employee.save();
+    },
+  },
+  voteEmployee: {
+    type: EmployeeType,
+    args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+    resolve: async (parent, args) => {
+      const { id } = args;
+
+      return await EmployeeModel.findByIdAndUpdate(
+        id,
+        { $inc: { vote: 1 } },
+        { new: true }
+      );
     },
   },
 };

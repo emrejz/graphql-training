@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { toast } from "react-toastify";
 import { useQuery } from "@apollo/client";
 import { getEmployees } from "../../gql/employee/queries";
 import Card from "../../components/Card";
@@ -14,9 +13,7 @@ export default () => {
   );
 
   if (loading) return <h1>Loading...</h1>;
-  if (error) {
-    toast.error("An error occured.");
-  }
+  if (error) return <h1>An error occured.</h1>;
   return (
     <div className="homeContainer">
       {sortedEmployees?.map((employee) => (
