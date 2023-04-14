@@ -6,14 +6,14 @@ export default {
   employee: {
     type: EmployeeType,
     args: { id: { type: GraphQLID } },
-    resolve(parent, args) {
-      return EmployeeModel.findById(args.id);
+    resolve: async (parent, args) => {
+      return await EmployeeModel.findById(args.id);
     },
   },
   employees: {
     type: new GraphQLList(EmployeeType),
-    resolve(parent, args) {
-      return EmployeeModel.find({});
+    resolve: async (parent, args) => {
+      return await EmployeeModel.find({});
     },
   },
 };

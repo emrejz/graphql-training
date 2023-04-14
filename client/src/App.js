@@ -1,6 +1,10 @@
+import { useQuery } from "@apollo/client";
+import { getEmployees } from "./gql/employee/queries";
 import "./App.css";
 
 function App() {
+  const { loading, data, error } = useQuery(getEmployees);
+
   return (
     <div className="App">
       <header className="App-header">
